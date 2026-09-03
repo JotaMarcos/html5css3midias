@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Prática — Estilização de Imagens e Vídeos | Desenvolvimento Web I
+    </title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#hero">Início</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#video-nativo">Vídeo</a></li>
+          <li><a href="#video-externo">YouTube</a></li>
+          <li><a href="#carrossel">Carrossel</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- 1. SEÇÃO HERO EM PARALLAX (IMAGEM) -->
+      <!-- Substituir a URL abaixo por qualquer imagem desejada -->
+      <section
+        id="hero"
+        class="hero-parallax"
+        style="
+          background-image: url(&quot;https://images.unsplash.com/photo-1503252947848-7338d3f92f31?w=1600&quot;);
+        "
+      >
+        <div class="marquee-container">
+          <marquee behavior="scroll" direction="left" scrollamount="6">
+            Código bem escrito não impressiona apenas máquinas, impressiona pessoas.
+          </marquee>
+        </div>
+        
+        <div class="hero-parallax__conteudo">
+          <h1>Desenvolvimento Web I</h1>
+          <p>Estilização profissional de imagens e vídeos com HTML5 e CSS3</p>
+        </div>
+      </section>
+
+      <!-- 2. GALERIA DE IMAGENS RESPONSIVA -->
+      <section id="galeria" class="container">
+        <h2>Galeria de Imagens</h2>
+        <div class="galeria">
+          <img
+            class="midia-imagem midia-imagem--altura-fixa"
+            src="https://picsum.photos/seed/1/600/400"
+            alt="Descrição da imagem 1"
+          />
+          <img
+            class="midia-imagem midia-imagem--altura-fixa"
+            src="https://picsum.photos/seed/2/600/400"
+            alt="Descrição da imagem 2"
+          />
+          <img
+            class="midia-imagem midia-imagem--altura-fixa"
+            src="https://picsum.photos/seed/3/600/400"
+            alt="Descrição da imagem 3"
+          />
+        </div>
+      </section>
+
+      <!-- 3. VÍDEO NATIVO HTML5 (ARQUIVO LOCAL) -->
+      <section id="video-nativo" class="container">
+        <h2>Vídeo Nativo (HTML5)</h2>
+        <!-- Substituir "video/aula.mp4" e "video/capa.jpg" pelos arquivos reais do projeto -->
+        <video class="midia-video" controls poster="video/capa.jpg">
+          <source src="video/aula.mp4" type="video/mp4" />
+          Este navegador não é compatível com a reprodução do vídeo.
+        </video>
+      </section>
+
+      <!-- 4. VÍDEO EXTERNO DO YOUTUBE (RESPONSIVO PARA QUALQUER VÍDEO) -->
+      <section id="video-externo" class="container">
+        <h2>Vídeo Incorporado (YouTube)</h2>
+        <!-- Substituir SEU_ID_DE_VIDEO pelo identificador do vídeo desejado -->
+        <div class="midia-embed">
+          <iframe
+            src="https://www.youtube.com/watch?v=w1eyiTJ_cI8"
+            title="Vídeo incorporado do YouTube"
+            allow="
+              accelerometer;
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              gyroscope;
+              picture-in-picture;
+            "
+            allowfullscreen
+          >
+          </iframe>
+        </div>
+      </section>
+
+      <!-- 5. CARROSSEL AUTOMÁTICO DE IMAGENS -->
+      <section id="carrossel-automatico" class="container">
+        <h2>Carrossel Automático (CSS puro)</h2>
+        <div class="carrossel">
+          <div class="carrossel__trilho--auto">
+            <div class="carrossel__slide">
+              <img
+                class="midia-imagem"
+                src="https://picsum.photos/seed/4/400/260"
+                alt="Item do carrossel automático 1"
+              />
+            </div>
+            <div class="carrossel__slide">
+              <img
+                class="midia-imagem"
+                src="https://picsum.photos/seed/5/400/260"
+                alt="Item do carrossel automático 2"
+              />
+            </div>
+            <div class="carrossel__slide">
+              <img
+                class="midia-imagem"
+                src="https://picsum.photos/seed/6/400/260"
+                alt="Item do carrossel automático 3"
+              />
+            </div>
+            <div class="carrossel__slide">
+              <img
+                class="midia-imagem"
+                src="https://picsum.photos/seed/4/400/260"
+                alt="Item do carrossel automático 1 (repetido para looping contínuo)"
+              />
+            </div>
+            <div class="carrossel__slide">
+              <img
+                class="midia-imagem"
+                src="https://picsum.photos/seed/5/400/260"
+                alt="Item do carrossel automático 2 (repetido para looping contínuo)"
+              />
+            </div>
+            <div class="carrossel__slide">
+              <img
+                class="midia-imagem"
+                src="https://picsum.photos/seed/6/400/260"
+                alt="Item do carrossel automático 3 (repetido para looping contínuo)"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5.1 CARROSSEL MANUAL DE IMAGENS (NAVEGAÇÃO POR SETAS) -->
+      <section id="carrossel-manual" class="container">
+        <h2>Carrossel Manual (Navegação por Setas)</h2>
+        <div class="carrossel" data-carrossel-manual>
+          <div class="carrossel__trilho--manual">
+            <div class="carrossel__slide">
+              <img
+                class="midia-imagem"
+                src="https://picsum.photos/seed/7/400/260"
+                alt="Item do carrossel manual 1"
+              />
+            </div>
+            <div class="carrossel__slide">
+              <img
+                class="midia-imagem"
+                src="https://picsum.photos/seed/8/400/260"
+                alt="Item do carrossel manual 2"
+              />
+            </div>
+            <div class="carrossel__slide">
+              <img
+                class="midia-imagem"
+                src="https://picsum.photos/seed/9/400/260"
+                alt="Item do carrossel manual 3"
+              />
+            </div>
+            <div class="carrossel__slide">
+              <img
+                class="midia-imagem"
+                src="https://picsum.photos/seed/10/400/260"
+                alt="Item do carrossel manual 4"
+              />
+            </div>
+          </div>
+          <button
+            type="button"
+            class="carrossel__seta carrossel__seta--esquerda"
+            aria-label="Slide anterior"
+          >
+            &#10094;
+          </button>
+          <button
+            type="button"
+            class="carrossel__seta carrossel__seta--direita"
+            aria-label="Próximo slide"
+          >
+            &#10095;
+          </button>
+        </div>
+      </section>
+
+      <!-- 6. FORMULÁRIO DE CONTATO (BASE ORIGINAL MANTIDA) -->
+      <section id="contato" class="container">
+        <h2>Formulário de Contato</h2>
+        <form action="#" method="post">
+          <div>
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" />
+          </div>
+          <div>
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" />
+          </div>
+          <div>
+            <button type="submit">Enviar</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <<footer>
+      <p>&copy; <span id="ano-atual"></span> SMARTWEB. Todos os direitos reservados.</p>
+    </footer>
+    <script src="./js/main.js"></script>
+
+    <script src="./js/carrossel.js"></script>
+  </body>
+</html>

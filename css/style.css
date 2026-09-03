@@ -1,0 +1,498 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap');
+
+/* ==========================================================================
+   1. VARIÁVEIS GLOBAIS (DESIGN TOKENS)
+   ========================================================================== */
+
+:root {
+	--fonte-base: 'Josefin Sans', Arial, sans-serif;
+
+	--cor-primaria: #80aebd;
+	--cor-primaria-clara: lightblue;
+	--cor-perigo: #bd8088;
+	--cor-perigo-clara: #e6adb7;
+
+	--cor-texto: #2b2b2b;
+	--cor-texto-claro: #ffffff;
+	--cor-fundo: #ffffff;
+	--cor-borda: #eeeeee;
+
+	--overlay-escuro: rgba(11, 18, 32, 0.55);
+
+	--raio-md: 12px;
+	--raio-lg: 16px;
+
+	--sombra-md: 0 8px 20px rgba(0, 0, 0, 0.2);
+	--sombra-lg: 0 10px 24px rgba(0, 0, 0, 0.3);
+
+	--transicao-rapida: 0.3s ease;
+	--transicao-media: 0.5s ease;
+
+	--espaco-sm: 0.5em;
+	--espaco-md: 1em;
+	--espaco-lg: 2em;
+}
+
+/* ==========================================================================
+   2. RESET E BASE
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: var(--fonte-base);
+	color: var(--cor-texto);
+	background-color: var(--cor-fundo);
+	line-height: 1.6;
+}
+
+img,
+video,
+iframe {
+	display: block;
+}
+
+/* ==========================================================================
+   3. CABEÇALHO E NAVEGAÇÃO
+   ========================================================================== */
+
+header {
+	margin: 0;
+}
+
+header nav {
+	background: #555;
+	height: 3em;
+}
+
+header nav ul {
+	margin: 0;
+	padding: 0;
+}
+
+header nav ul li {
+	list-style: none;
+	line-height: 3em;
+	float: left;
+}
+
+header nav ul li a {
+	text-decoration: none;
+	display: block;
+	height: 100%;
+	padding: 0 1em;
+	color: #888;
+	transition: color var(--transicao-rapida), background-color var(--transicao-rapida);
+}
+
+header nav ul li a:hover {
+	color: #fff;
+	background-color: #777;
+}
+
+header nav ul li:first-child a {
+	font-size: 1.5em;
+	color: var(--cor-primaria);
+}
+
+header nav ul li:first-child a:hover {
+	color: var(--cor-primaria-clara);
+}
+
+main {
+	padding: 0 1em;
+}
+
+.container {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: var(--espaco-lg) 0;
+}
+
+.container h2 {
+	margin-bottom: var(--espaco-md);
+}
+
+/* ==========================================================================
+   4. MÍDIA GENÉRICA: IMAGENS
+   Classes reutilizáveis para qualquer imagem inserida no projeto.
+   ========================================================================== */
+
+.midia-imagem {
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+	object-fit: cover;
+	border-radius: var(--raio-md);
+	box-shadow: var(--sombra-md);
+	filter: grayscale(10%);
+	transition: transform var(--transicao-media), filter var(--transicao-media);
+}
+
+.midia-imagem:hover {
+	transform: scale(1.03);
+	filter: grayscale(0%);
+}
+
+/* Modificador para altura fixa em grades e carrosséis */
+.midia-imagem--altura-fixa {
+	height: 260px;
+}
+
+/* Modificador para avatares e imagens circulares */
+.midia-imagem--circular {
+	border-radius: 50%;
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+}
+
+/* Galeria responsiva de imagens (mobile-first) */
+.galeria {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--espaco-md);
+}
+
+/* ==========================================================================
+   5. MÍDIA GENÉRICA: VÍDEO NATIVO (HTML5 <video>)
+   ========================================================================== */
+
+.midia-video {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	border-radius: var(--raio-md);
+	box-shadow: var(--sombra-lg);
+}
+
+/* ==========================================================================
+   6. MÍDIA GENÉRICA: INCORPORAÇÃO RESPONSIVA (YOUTUBE, VIMEO OU QUALQUER IFRAME)
+   Técnica de proporção fixa: funciona para qualquer vídeo externo,
+   independentemente da resolução original do arquivo incorporado.
+   ========================================================================== */
+
+.midia-embed {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	overflow: hidden;
+	border-radius: var(--raio-md);
+	box-shadow: var(--sombra-md);
+	background-color: #000;
+}
+
+/* Fallback para navegadores sem suporte a aspect-ratio */
+@supports not (aspect-ratio: 16 / 9) {
+	.midia-embed {
+		height: 0;
+		padding-top: 56.25%;
+	}
+}
+
+.midia-embed iframe,
+.midia-embed video,
+.midia-embed object,
+.midia-embed embed {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+/* ==========================================================================
+   7. SEÇÃO HERO COM FUNDO EM PARALLAX (IMAGEM)
+   A imagem de fundo é definida via atributo style="background-image: url(...)"
+   no HTML, permitindo reutilizar a classe para qualquer imagem.
+   ========================================================================== */
+
+.hero-parallax {
+	position: relative;
+	height: 70vh;
+	min-height: 420px;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	color: var(--cor-texto-claro);
+}
+
+.hero-parallax::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: var(--overlay-escuro);
+}
+
+.hero-parallax__conteudo {
+	position: relative;
+	z-index: 1;
+	padding: 0 var(--espaco-md);
+}
+
+.hero-parallax__conteudo h1 {
+	font-size: clamp(1.8rem, 4vw, 3rem);
+	margin-bottom: var(--espaco-sm);
+}
+
+/* ==========================================================================
+   8. SEÇÃO HERO COM FUNDO EM VÍDEO
+   ========================================================================== */
+
+.hero-video {
+	position: relative;
+	height: 70vh;
+	min-height: 420px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--cor-texto-claro);
+	text-align: center;
+}
+
+.hero-video__fundo {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	z-index: -2;
+}
+
+.hero-video::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: var(--overlay-escuro);
+	z-index: -1;
+}
+
+.hero-video__conteudo {
+	position: relative;
+	z-index: 1;
+	padding: 0 var(--espaco-md);
+}
+
+/* ==========================================================================
+   9. CARROSSEL DE IMAGENS (AUTOMÁTICO E MANUAL)
+   ========================================================================== */
+
+.carrossel {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	border-radius: var(--raio-md);
+}
+
+/* Trilho: variação automática por @keyframes */
+.carrossel__trilho--auto {
+	display: flex;
+	width: max-content;
+	animation: deslizar-carrossel 16s linear infinite;
+}
+
+/* Trilho: variação manual, controlada via JavaScript (transform inline) */
+.carrossel__trilho--manual {
+	display: flex;
+	transition: transform var(--transicao-media);
+}
+
+.carrossel__slide {
+	flex: 0 0 auto;
+	width: 320px;
+	margin-right: var(--espaco-sm);
+}
+
+.carrossel__slide .midia-imagem {
+	height: 220px;
+}
+
+@keyframes deslizar-carrossel {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+.carrossel__seta {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	border: none;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: var(--cor-texto-claro);
+	width: 2.5em;
+	height: 2.5em;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: background-color var(--transicao-rapida);
+}
+
+.carrossel__seta:hover {
+	background-color: rgba(0, 0, 0, 0.75);
+}
+
+.carrossel__seta--esquerda {
+	left: var(--espaco-sm);
+}
+
+.carrossel__seta--direita {
+	right: var(--espaco-sm);
+}
+
+/*
+Página formulário contatos -----------------------------------------------------------------------
+*/
+
+main section form div {
+	margin: 0 0 10px 0;
+}
+
+main section form div label {
+	display: block;
+}
+
+main section form div input {
+	width: 20em;
+	max-width: 100%;
+	padding: 0.4em;
+	border: 1px solid var(--cor-borda);
+	border-radius: 4px;
+}
+
+main section form div button {
+	border: none;
+	padding: 10px 15px;
+	background-color: var(--cor-primaria);
+	color: #fff;
+	border-radius: 4px;
+	transition: background-color var(--transicao-rapida);
+}
+
+main section form div button:hover {
+	background-color: var(--cor-primaria-clara);
+	cursor: pointer;
+}
+
+/*
+Página lista contatos -----------------------------------------------------------------------
+*/
+
+main section table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+main section table,
+main section table th,
+main section table td {
+	border: 1px solid var(--cor-borda);
+	padding: 10px 15px;
+}
+
+main section table tbody tr td a {
+	text-decoration: none;
+	color: var(--cor-primaria);
+}
+
+main section table tbody tr td a:hover {
+	text-decoration: underline;
+	color: var(--cor-primaria-clara);
+}
+
+main section table tbody tr td form button {
+	border: none;
+	padding: 10px 15px;
+	background-color: var(--cor-perigo);
+	color: #fff;
+	border-radius: 4px;
+}
+
+main section table tbody tr td form button:hover {
+	background-color: var(--cor-perigo-clara);
+	cursor: pointer;
+}
+
+footer {
+	background: #333;
+	color: #ccc;
+	text-align: center;
+	padding: var(--espaco-md);
+	margin-top: var(--espaco-lg);
+}
+
+/* ==========================================================================
+   10. RESPONSIVIDADE (MOBILE-FIRST)
+   ========================================================================== */
+
+@media (min-width: 768px) {
+	.galeria {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (max-width: 767px) {
+	.hero-parallax,
+	.hero-video {
+		height: 50vh;
+	}
+}
+
+/* ==========================================================================
+   11. ACESSIBILIDADE: REDUÇÃO DE MOVIMENTO
+   Desativa animações e o efeito parallax para usuários sensíveis a movimento.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+	.carrossel__trilho--auto {
+		animation: none;
+	}
+
+	.carrossel__trilho--manual {
+		transition: none;
+	}
+
+	.hero-parallax {
+		background-attachment: scroll;
+	}
+
+	.midia-imagem {
+		transition: none;
+	}
+
+	.midia-imagem:hover {
+		transform: none;
+	}
+}
+
+
+.marquee-container {
+	width: 100%;
+	height: 30px;
+	background-color: rgba(0, 0, 0, 0.6);
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
+
+.marquee-container marquee {
+	font-family: 'Arial', sans-serif;
+	font-size: 14px;
+	color: #ffffff;
+	line-height: 30px;
+	letter-spacing: 0.5px;
+}
